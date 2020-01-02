@@ -52,25 +52,27 @@ class Square {
             } 
         }
         // Diagonals
-        if((xIndex < cols - 1) && (yIndex < rows - 1)){
-            if(!grid[xIndex + 1][yIndex + 1].isWall){
-                this.neighbors.push(grid[xIndex + 1][yIndex + 1])
-            } 
-        }
-        if((xIndex < cols - 1) && (yIndex > 0)){
-            if(!grid[xIndex + 1][yIndex - 1].isWall){
-                this.neighbors.push(grid[xIndex + 1][yIndex - 1])
-            } 
-        }
-        if((yIndex < rows - 1) && (xIndex > 0)){
-            if(!grid[xIndex - 1][yIndex + 1].isWall){
-                this.neighbors.push(grid[xIndex - 1][yIndex + 1])
-            } 
-        }
-        if((xIndex > 0) && yIndex > 0){
-            if(!grid[xIndex - 1][yIndex - 1].isWall){
-                this.neighbors.push(grid[xIndex - 1][yIndex - 1])
-            } 
+        if(allowDiagonals){
+            if((xIndex < cols - 1) && (yIndex < rows - 1)){
+                if(!grid[xIndex + 1][yIndex + 1].isWall){
+                    this.neighbors.push(grid[xIndex + 1][yIndex + 1])
+                } 
+            }
+            if((xIndex < cols - 1) && (yIndex > 0)){
+                if(!grid[xIndex + 1][yIndex - 1].isWall){
+                    this.neighbors.push(grid[xIndex + 1][yIndex - 1])
+                } 
+            }
+            if((yIndex < rows - 1) && (xIndex > 0)){
+                if(!grid[xIndex - 1][yIndex + 1].isWall){
+                    this.neighbors.push(grid[xIndex - 1][yIndex + 1])
+                } 
+            }
+            if((xIndex > 0) && yIndex > 0){
+                if(!grid[xIndex - 1][yIndex - 1].isWall){
+                    this.neighbors.push(grid[xIndex - 1][yIndex - 1])
+                } 
+            }
         }
     }
     // calculateGCost(start){

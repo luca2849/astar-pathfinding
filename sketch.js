@@ -6,6 +6,7 @@ const cellwidth = 1200 / cols;
 const cellHeight = 1200 / rows;
 const squares = (cols * rows);
 const [wallsX, wallsY] = addWalls();
+const allowDiagonals = false;
 
 
 // Lists

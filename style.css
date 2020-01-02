@@ -1,0 +1,10 @@
+canvas{
+    display: block;
+    margin: 0 auto;
+}
+h1{
+    font-size: 64px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+
+}
