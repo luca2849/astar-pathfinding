@@ -11,18 +11,24 @@
     </head>
     <h1>A* Pathfinding w/ p5.js</h1>
     <div id="main">
+        <div class="result success">
+            <p id="successResultP">&nbsp;</p>
+        </div>
+        <div class="result failure">
+            <p id="failureResultP"></p>
+        </div>
         <div id="canvasContainer"></div>
         <div id="tools">
-            <h3>Tools Section</h3>
+            <h2>Tools Section</h2>
             <!-- <div class="pretty p-switch p-fill">
                 <input id="allowDiagonals" type="checkbox" />
                 <div class="state p-success">
                     <label>Allow Diagonals</label>
                 </div>
             </div> -->
-            <button onClick="startPathfinding();">Start</button>
-            <button onClick="clearPathfinding();">Clear</button>
-            <button onClick="newWalls();">New Walls</button>
+            <button class="startBtn" onClick="startPathfinding();">Start</button>
+            <button class="clearBtn" onClick="clearPathfinding();">Clear</button>
+            <button class="newWallsBtn" onClick="newWalls();">New Walls</button>
         </div>
     </div>
 

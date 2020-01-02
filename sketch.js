@@ -2,12 +2,15 @@ new p5();
 const cols = 25;
 const rows = 25;
 var grid = new Array(cols);
-const cellwidth = 700 / cols;
-const cellHeight = 700 / rows;
+const cellwidth = 650 / cols;
+const cellHeight = 650 / rows;
 const squares = (cols * rows);
 let [wallsX, wallsY] = addWalls();
-let allowDiagonals = undefined;
-
+let allowDiagonals = false;
+let outputFailureP = undefined;
+let outputSuccessP = undefined;
+let outputSuccessContainer = undefined;
+let outputFailureContainer = undefined;
 
 // Lists
 let openSet = [];
@@ -48,7 +51,8 @@ function placeWalls(start, end){
     for(let i = 0; i < wallsX.length; i++){
         currentX = wallsX[i];
         currentY = wallsY[i];
-        if(grid[currentX][currentY] == start || grid[currentX][currentY] == end){
+        disallowedWalls = [start, end];
+        if(disallowedWalls.includes(grid[currentX][currentY])){
             continue;
         }else{
             grid[currentX][currentY].isWall = true;
@@ -63,6 +67,8 @@ function clearPathfinding(){
     openSet = [];
     closedSet = [];
     path = [];
+    outputFailureP.html("&nbsp;")
+    outputSuccessP.html("")
     setup();
     draw();
 }
@@ -76,9 +82,13 @@ function newWalls(){
 }
 function setup(){
     background(0);
-    frameRate(15)
+    frameRate(15);
+    outputFailureP = select("#failureResultP");
+    outputSuccessP = select("#successResultP");
+    outputSuccessContainer = select(".success");
+    outputFailureContainer = select(".failure");
     // allowDiagonals = diagInput.value();
-    let cnv = createCanvas(700, 700);
+    let cnv = createCanvas(650, 650);
     cnv.parent('canvasContainer');
     console.log("A* Pathfinding");
     // Create 2D array of spaces
@@ -122,8 +132,6 @@ function draw(){
         let current = openSet[winner];
         // Found End
         if(current == end){
-            noLoop();
-            console.log("Done");
             path = [];
             var tmp = current;
             path.push(tmp);
@@ -131,6 +139,11 @@ function draw(){
                 path.push(tmp.previous);
                 tmp = tmp.previous;
             }
+            outputFailureP.html("")
+            outputSuccessP.html("")
+            outputSuccessP.html("Solution Found - " + path.length + " Squares")
+            outputSuccessContainer.addClass("show")
+            noLoop(); 
         }
         rmvFromOpen(openSet, current);
         closedSet.push(current);
@@ -152,7 +165,10 @@ function draw(){
             }
         }
     } else{
-        // No solution
+        outputFailureP.html("")
+        outputSuccessP.html("")
+        outputFailureP.html("No Solution Found")
+        outputFailureContainer.addClass("show")
     }
 
     stroke(255)
