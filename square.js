@@ -15,7 +15,8 @@ class Square {
         if(!this.isWall){
             fill(colour);
         } else{
-            fill(169, 169, 169)
+            //fill(169, 169, 169)
+            fill(100, 100, 100)
         }
         
         rect(this.x, this.y, cellwidth, cellHeight);

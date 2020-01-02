@@ -171,10 +171,10 @@ function draw(){
         outputFailureContainer.addClass("show")
     }
 
-    stroke(255)
+    stroke(0)
     for(var i = 0; i < cols; i++){
         for(var j = 0; j < rows; j++){
-            grid[i][j].show(color(0, 0, 0));
+            grid[i][j].show(color(255, 255, 255));
         }
     }
 
