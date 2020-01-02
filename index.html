@@ -6,6 +6,23 @@
         <script src="square.js"></script>
         <link rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     </head>
     <h1>A* Pathfinding w/ p5.js</h1>
+    <div id="main">
+        <div id="canvasContainer"></div>
+        <div id="tools">
+            <h3>Tools Section</h3>
+            <!-- <div class="pretty p-switch p-fill">
+                <input id="allowDiagonals" type="checkbox" />
+                <div class="state p-success">
+                    <label>Allow Diagonals</label>
+                </div>
+            </div> -->
+            <button onClick="startPathfinding();">Start</button>
+            <button onClick="clearPathfinding();">Clear</button>
+            <button onClick="newWalls();">New Walls</button>
+        </div>
+    </div>
+
 </html>

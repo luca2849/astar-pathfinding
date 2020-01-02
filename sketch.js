@@ -2,11 +2,11 @@ new p5();
 const cols = 25;
 const rows = 25;
 var grid = new Array(cols);
-const cellwidth = 1200 / cols;
-const cellHeight = 1200 / rows;
+const cellwidth = 700 / cols;
+const cellHeight = 700 / rows;
 const squares = (cols * rows);
-const [wallsX, wallsY] = addWalls();
-const allowDiagonals = false;
+let [wallsX, wallsY] = addWalls();
+let allowDiagonals = undefined;
 
 
 // Lists
@@ -56,9 +56,30 @@ function placeWalls(start, end){
     }
 }
 
+function startPathfinding(){
+    loop();
+}
+function clearPathfinding(){
+    openSet = [];
+    closedSet = [];
+    path = [];
+    setup();
+    draw();
+}
+function newWalls(){
+    grid = [];
+    console.log(wallsX + " " + wallsY);
+    [wallsX, wallsY] = [];
+    [wallsX, wallsY] = addWalls();
+    console.log(wallsX + " " + wallsY);
+    clearPathfinding();
+}
 function setup(){
+    background(0);
     frameRate(15)
-    createCanvas(1200, 1200);
+    // allowDiagonals = diagInput.value();
+    let cnv = createCanvas(700, 700);
+    cnv.parent('canvasContainer');
     console.log("A* Pathfinding");
     // Create 2D array of spaces
     for(var i = 0; i < cols; i++){
@@ -82,11 +103,10 @@ function setup(){
         }
     }
     openSet.push(start); // Add start point to open list
+    noLoop();
 }
 
 function draw(){
-    background(0);
-
     if(openSet.length > 0){
         // Algorithm not done
 
@@ -111,7 +131,6 @@ function draw(){
                 path.push(tmp.previous);
                 tmp = tmp.previous;
             }
-            console.log(path)
         }
         rmvFromOpen(openSet, current);
         closedSet.push(current);
