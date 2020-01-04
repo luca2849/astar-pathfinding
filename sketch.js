@@ -74,10 +74,8 @@ function clearPathfinding(){
 }
 function newWalls(){
     grid = [];
-    console.log(wallsX + " " + wallsY);
     [wallsX, wallsY] = [];
     [wallsX, wallsY] = addWalls();
-    console.log(wallsX + " " + wallsY);
     clearPathfinding();
 }
 function setup(){
@@ -187,9 +185,14 @@ function draw(){
     }
 
     if(path){
+        noFill();
+        stroke(0);
+        beginShape();
         for(var i = 0; i < path.length; i++){
             path[i].show(color(0, 0, 255));
+            // vertex(path[i].x * cellwidth, path[i].y*cellHeight);
         }
+        endShape();
     }
     start.show(color(255, 0, 239));
     end.show(color(0, 247, 255));
